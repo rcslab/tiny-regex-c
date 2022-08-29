@@ -30,7 +30,11 @@
 
 
 #include "re.h"
+
+#ifdef __APP__
 #include <stdio.h>
+#endif
+
 #include <ctype.h>
 
 /* Definitions: */
@@ -248,6 +252,8 @@ re_t re_compile(const char* pattern)
   return (re_t) re_compiled;
 }
 
+#ifdef __APP__
+
 void re_print(regex_t* pattern)
 {
   const char* types[] = { "UNUSED", "DOT", "BEGIN", "END", "QUESTIONMARK", "STAR", "PLUS", "CHAR", "CHAR_CLASS", "INV_CHAR_CLASS", "DIGIT", "NOT_DIGIT", "ALPHA", "NOT_ALPHA", "WHITESPACE", "NOT_WHITESPACE", "BRANCH" };
@@ -285,7 +291,7 @@ void re_print(regex_t* pattern)
   }
 }
 
-
+#endif // __APP__
 
 /* Private functions: */
 static int matchdigit(char c)
